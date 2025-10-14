@@ -1,0 +1,74 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace "com.vidsnap.reader"
+
+    // ⬇️ Requerido por camera/path_provider/lifecycle
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.vidsnap.reader"
+        minSdk 24
+        // ⬇️ Alinea con 36
+        targetSdk 36
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        debug { minifyEnabled false }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            // signingConfig signingConfigs.release
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+        freeCompilerArgs += ["-Xjvm-default=all"]
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
+    }
+
+    packagingOptions {
+        resources {
+            excludes += [
+                "META-INF/DEPENDENCIES",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/license.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+                "META-INF/ASL2.0"
+            ]
+        }
+    }
+}
+
+dependencies {
+    // Kotlin alineado con KGP 2.1.0
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
+
+    // Material3 (provee Theme.Material3.DayNight.NoActionBar)
+    implementation "com.google.android.material:material:1.12.0"
+
+    // Librerías que antes no resolvían en el CDN de Flutter
+    implementation "com.tom-roush:pdfbox-android:2.0.27.0"
+    implementation "commons-io:commons-io:2.11.0"
+    implementation "org.apache.commons:commons-compress:1.26.1"
+
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.0.4"
+}
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Tema del launch/splash mientras inicia Flutter -->
+    <style name="LaunchTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Mantén la pantalla igual que el fondo inicial del FlutterActivity -->
+        <item name="android:windowBackground">@drawable/launch_background</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <!-- Tema normal una vez que Flutter está corriendo -->
+    <style name="NormalTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+</resources>

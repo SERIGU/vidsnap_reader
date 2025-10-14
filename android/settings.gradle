@@ -1,0 +1,33 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    // Carga del tooling de Flutter (Embedding V2)
+    def flutterSdkPath = System.getenv("FLUTTER_ROOT")
+    if (flutterSdkPath == null || flutterSdkPath.isEmpty()) {
+        throw new GradleException("FLUTTER_ROOT no está definido. Instala Flutter y exporta FLUTTER_ROOT.")
+    }
+    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
+}
+
+plugins {
+    id "dev.flutter.flutter-plugin-loader" version "1.0.0"
+    id "com.android.application" version "8.7.2" apply false
+    id "org.jetbrains.kotlin.android" version "2.1.0" apply false
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        // Lo dejamos por compatibilidad con algunos plugins de Flutter:
+        maven { url "https://storage.googleapis.com/download.flutter.io" }
+    }
+}
+
+rootProject.name = "vidsnap_reader"
+include(":app")

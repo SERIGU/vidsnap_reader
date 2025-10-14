@@ -1,0 +1,22 @@
+{
+  "app_title": "VidSnap Reader",
+  "merge_pdfs": "Unir PDFs",
+  "compress_pdf": "Comprimir PDF",
+  "clean_pdf": "Limpiar PDF",
+  "extract_pages": "Extraer páginas específicas",
+  "scan_to_pdf": "Escanear a PDF",
+  "select_pdf": "Seleccionar PDF",
+  "select_pdfs": "Seleccionar PDFs",
+  "run": "Ejecutar",
+  "range_hint": "Ejemplo: 1-3,7,10-12",
+  "single_file": "Un solo PDF",
+  "multiple_files": "Varios PDFs (por rango)",
+  "quality": "Calidad",
+  "basic": "Básico",
+  "pro": "Pro",
+  "pages_selected": "{count} páginas seleccionadas",
+  "operation_success": "Operación completada",
+  "operation_failed": "Operación fallida",
+  "invalid_range": "Rango de páginas inválido",
+  "camera_permission_required": "Se requiere permiso de cámara"
+}

@@ -1,0 +1,12 @@
+// Top-level build file. Con AGP moderno, la mayoría se configura en settings.gradle y en app/build.gradle
+buildscript {
+    // Intencionalmente vacío (AGP 7+)
+}
+
+allprojects {
+    // Repositorios ya están en dependencyResolutionManagement
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

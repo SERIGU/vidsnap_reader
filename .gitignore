@@ -1,0 +1,35 @@
+# --- Flutter / Dart ---
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.buildlog/
+.pub-cache/
+# Mejor no versionar pubspec.lock en apps móviles
+pubspec.lock
+
+# --- Android ---
+android/.gradle/
+android/local.properties
+android/app/build/
+android/build/
+**/build/
+
+# --- iOS (por si luego habilitamos) ---
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework/
+ios/Flutter/Flutter.podspec
+
+# --- IDE / SO ---
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# --- Signing / secrets ---
+*.jks
+*.keystore
+key.properties
+

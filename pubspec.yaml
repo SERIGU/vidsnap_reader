@@ -1,0 +1,31 @@
+name: vidsnap_reader
+description: VidSnap Reader - Fase 1 (Unir, Comprimir, Limpiar, Extraer páginas, Escanear)
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.9.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2            # <- corregido para compatibilidad con flutter_localizations (Flutter 3.35.x)
+  path_provider: ^2.1.4
+  path: ^1.9.0
+  permission_handler: ^11.3.1
+  camera: ^0.10.6
+  flutter_riverpod: ^2.6.1
+  collection: ^1.18.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lints: ^4.0.0
+  mocktail: ^1.0.3
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/i18n/
