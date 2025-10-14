@@ -25,12 +25,19 @@ jobs:
         run: flutter pub get
 
       - name: 🧪 Analyze (non-blocking)
+        shell: bash
         run: |
-          flutter analyze || echo "⚠️ Analyzer warnings ignored (non-blocking)"
+          echo "🔍 Running flutter analyze (will not fail build)"
+          flutter analyze || true
 
-      - name: 🧩 Run tests
-        run: flutter test || echo "⚠️ Tests failed — continuing to build"
+      - name: 🧪 Run tests (optional)
+        shell: bash
+        run: |
+          echo "🧪 Running flutter tests (will not fail build)"
+          flutter test || true
 
       - name: 🏗️ Build APK (debug)
-        run: flutter build apk --debug
+        run: |
+          echo "🏗️ Building APK in debug mode"
+          flutter build apk --debug
 
