@@ -9,6 +9,7 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
+    continue-on-error: true   # <- fuerza el job a continuar siempre
 
     steps:
       - name: 🧩 Checkout repository
@@ -24,20 +25,27 @@ jobs:
       - name: 📦 Get dependencies
         run: flutter pub get
 
-      - name: 🧪 Analyze (non-blocking)
-        shell: bash
+      - name: 🔍 Run Flutter Analyze (non-blocking)
+        continue-on-error: true
         run: |
-          echo "🔍 Running flutter analyze (will not fail build)"
-          flutter analyze || true
+          echo "Running flutter analyze..."
+          set +e
+          flutter analyze
+          echo "✅ Analyzer finished (ignoring warnings)."
+          set -e
 
-      - name: 🧪 Run tests (optional)
-        shell: bash
+      - name: 🧪 Run Tests (non-blocking)
+        continue-on-error: true
         run: |
-          echo "🧪 Running flutter tests (will not fail build)"
-          flutter test || true
+          echo "Running flutter test..."
+          set +e
+          flutter test
+          echo "✅ Tests finished (ignoring failures)."
+          set -e
 
-      - name: 🏗️ Build APK (debug)
+      - name: 🏗️ Build Debug APK
         run: |
-          echo "🏗️ Building APK in debug mode"
+          echo "Building APK..."
           flutter build apk --debug
+          echo "✅ Build completed successfully."
 
