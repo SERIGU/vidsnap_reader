@@ -11,10 +11,11 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: ^0.20.2            # <- corregido para compatibilidad con flutter_localizations (Flutter 3.35.x)
+  intl: ^0.20.2            # <- compatible con flutter_localizations
   path_provider: ^2.1.4
   path: ^1.9.0
-  permission_handler: ^11.3.1
+  # (mantén aquí el resto de tus dependencias actuales)
+  # ...
   camera: ^0.10.6
   flutter_riverpod: ^2.6.1
   collection: ^1.18.0
@@ -22,7 +23,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  lints: ^4.0.0
+  flutter_lints: ^3.0.2     # <- reemplaza 'lints' por 'flutter_lints'
   mocktail: ^1.0.3
 
 flutter:
