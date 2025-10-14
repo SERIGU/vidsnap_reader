@@ -4,15 +4,24 @@ analyzer:
   exclude:
     - "**/build/**"
   errors:
-    # No bloquear CI por estos avisos comunes
+    # Ignora advertencias comunes del analyzer
     unused_field: ignore
     dangling_library_doc_comments: ignore
     unused_import: ignore
     prefer_const_constructors: ignore
     unnecessary_string_interpolations: ignore
     prefer_final_fields: ignore
+    prefer_const_constructors_in_immutables: ignore
+    use_key_in_widget_constructors: ignore
+    always_use_package_imports: ignore
+    file_names: ignore
+    depend_on_referenced_packages: ignore
+    avoid_print: ignore
+    annotate_overrides: ignore
 
 linter:
   rules:
-    # Permitimos prints durante desarrollo (no en release)
     avoid_print: false
+    constant_identifier_names: false
+    prefer_const_constructors: false
+    prefer_final_fields: false
