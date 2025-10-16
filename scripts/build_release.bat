@@ -1,5 +1,7 @@
 @echo off
-flutter clean
-flutter pub get
+REM Build Debug (local)
+flutter build apk --debug
+
+REM Build Release (local, sin firma)
 flutter build apk --release
-echo APK listo en build\app\outputs\flutter-apk\app-release.apk
+
