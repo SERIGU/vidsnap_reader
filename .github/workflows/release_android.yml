@@ -1,0 +1,48 @@
+name: Android Release (AAB firmado por tag)
+on:
+  push:
+    tags: [ "v*.*.*" ]
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.3"
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Analyze (non-blocking)
+        shell: bash
+        run: flutter analyze || true
+      - name: Tests (non-blocking)
+        shell: bash
+        run: flutter test || true
+      - name: Restore keystore from secret
+        shell: bash
+        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > android/keystore.jks
+      - name: Create key.properties from secrets
+        shell: bash
+        run: |
+          cat > android/key.properties <<'EOF'
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          storeFile=keystore.jks
+          EOF
+      - name: Build AAB (release)
+        run: flutter build appbundle --release
+      - name: Upload artifact (.aab)
+        uses: actions/upload-artifact@v4
+        with:
+          name: vidsnap_reader-aab
+          path: build/app/outputs/bundle/release/app-release.aab
+      - name: (Opcional) Crear GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/app/outputs/bundle/release/app-release.aab
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
